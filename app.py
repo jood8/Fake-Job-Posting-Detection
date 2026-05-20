@@ -34,14 +34,17 @@ st.divider()
 @st.cache_resource
 def load_assets():
     MODEL_FILE_ID = "16W7VOvJrXEQTOXje8a7xdl_T42OC5ZMq"
-    
     model_path = "fake_job_multimodal_model.keras"
     tokenizer_path = "tokenizer.pkl"
+    
+    # سطر التحميل الذكي
     if not os.path.exists(model_path):
-        with st.spinner("Downloading Multimodal Model from Google Drive (29MB)... Please wait."):
+        with st.spinner("Downloading Multimodal Model from Google Drive (29MB)..."):
             url = f"https://docs.google.com/uc?export=download&id={MODEL_FILE_ID}"
             urllib.request.urlretrieve(url, model_path)
+
     model = tf.keras.models.load_model(model_path)
+
     with open(tokenizer_path, "rb") as f:
         tokenizer = pickle.load(f)
 
