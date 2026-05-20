@@ -142,6 +142,14 @@ streamlit run app.py
 
 ---
 
+## 🔽 Download Trained Model
+
+Since the trained `.keras` model file exceeds GitHub's file size limit, you can download it directly from the link below:
+
+* **[Download Model Weights (.keras)]([https://drive.google.com/file/d/16W7VOvJrXEQTOXje8a7xdl_T42OC5ZMq/view?usp=sharing])**
+
+> 📌 **Note:** Place the downloaded `fake_job_multimodal_model.keras` file in the root directory of this project before running `app.py`.
+
 # 📁 Saved Files
 
 * `fake_job_multimodal_model.keras` → trained model
