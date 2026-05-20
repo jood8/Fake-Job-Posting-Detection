@@ -6,7 +6,8 @@ import numpy as np
 import cv2
 import pickle
 import easyocr
-
+import os
+import urllib.request
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 
 
@@ -30,17 +31,12 @@ st.divider()
 # ======================================
 # LOAD MODEL + TOKENIZER + OCR
 # ======================================
-import os
-import urllib.request
-
-# ======================================
-# LOAD MODEL 
-# ======================================
 @st.cache_resource
 def load_assets():
     MODEL_FILE_ID = "16W7VOvJrXEQTOXje8a7xdl_T42OC5ZMq"
+    
     model_path = "fake_job_multimodal_model.keras"
-    tokenizer_path = "tokenizer.pkl"    
+    tokenizer_path = "tokenizer.pkl"
     if not os.path.exists(model_path):
         with st.spinner("Downloading Multimodal Model from Google Drive (29MB)... Please wait."):
             url = f"https://docs.google.com/uc?export=download&id={MODEL_FILE_ID}"
@@ -48,15 +44,18 @@ def load_assets():
     model = tf.keras.models.load_model(model_path)
     with open(tokenizer_path, "rb") as f:
         tokenizer = pickle.load(f)
+
     reader = easyocr.Reader(['en'])
+
     return model, tokenizer, reader
+
+
 try:
     model, tokenizer, reader = load_assets()
+    
 except Exception as e:
     st.error(f"Loading Error:\n{e}")
     st.stop()
-
-
 # ======================================
 # MAIN LAYOUT
 # ======================================
