@@ -31,17 +31,21 @@ st.divider()
 # ======================================
 # LOAD MODEL + TOKENIZER + OCR
 # ======================================
+import gdown
+
 @st.cache_resource
 def load_assets():
     MODEL_FILE_ID = "16W7VOvJrXEQTOXje8a7xdl_T42OC5ZMq"
+    
     model_path = "fake_job_multimodal_model.keras"
     tokenizer_path = "tokenizer.pkl"
-    
-    # سطر التحميل الذكي
+
     if not os.path.exists(model_path):
-        with st.spinner("Downloading Multimodal Model from Google Drive (29MB)..."):
-            url = f"https://docs.google.com/uc?export=download&id={MODEL_FILE_ID}"
-            urllib.request.urlretrieve(url, model_path)
+        with st.spinner("Downloading Multimodal Model from Google Drive..."):
+            
+            url = f"https://drive.google.com/uc?id={MODEL_FILE_ID}"
+            
+            gdown.download(url, model_path, quiet=False)
 
     model = tf.keras.models.load_model(model_path)
 
@@ -55,7 +59,7 @@ def load_assets():
 
 try:
     model, tokenizer, reader = load_assets()
-    
+
 except Exception as e:
     st.error(f"Loading Error:\n{e}")
     st.stop()
