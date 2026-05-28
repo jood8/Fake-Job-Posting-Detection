@@ -1,8 +1,9 @@
-tensorflow==2.15.0
 easyocr
 opencv-python-headless
 numpy
 pandas
 scikit-learn
 streamlit
-
+tensorflow==2.21.0
+keras==3.13.2
+opencv-python-headless
