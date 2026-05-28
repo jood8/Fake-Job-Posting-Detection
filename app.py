@@ -31,12 +31,10 @@ st.divider()
 # ======================================
 # LOAD MODEL + TOKENIZER + OCR
 # ======================================
-import gdown
-
 @st.cache_resource
 def load_assets():
 
-    model_path = "fixed_model.h5"
+    model_path = "final_streamlit_model.h5"
     tokenizer_path = "tokenizer.pkl"
 
     model = tf.keras.models.load_model(
@@ -50,14 +48,6 @@ def load_assets():
     reader = easyocr.Reader(['en'])
 
     return model, tokenizer, reader
-
-
-try:
-    model, tokenizer, reader = load_assets()
-
-except Exception as e:
-    st.error(f"Loading Error:\n{e}")
-    st.stop()
 # ======================================
 # MAIN LAYOUT
 # ======================================
