@@ -34,7 +34,7 @@ st.divider()
 @st.cache_resource
 def load_assets():
 
-    model_path = "fixed_model.h5"
+    model_path = "streamlit_fixed.keras"
     tokenizer_path = "tokenizer.pkl"
 
     model = tf.keras.models.load_model(
