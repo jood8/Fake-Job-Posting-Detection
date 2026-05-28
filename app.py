@@ -48,12 +48,11 @@ def load_assets():
     reader = easyocr.Reader(['en'])
 
     return model, tokenizer, reader
+model, tokenizer, reader = load_assets()
 # ======================================
 # MAIN LAYOUT
 # ======================================
 col1, col2 = st.columns([1, 1.2])
-
-
 # ======================================
 # LEFT COLUMN
 # ======================================
