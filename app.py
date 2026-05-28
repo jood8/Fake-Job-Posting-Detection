@@ -35,19 +35,14 @@ import gdown
 
 @st.cache_resource
 def load_assets():
-    MODEL_FILE_ID = "16W7VOvJrXEQTOXje8a7xdl_T42OC5ZMq"
-    
-    model_path = "fake_job_multimodal_model.keras"
+
+    model_path = "fixed_model.h5"
     tokenizer_path = "tokenizer.pkl"
 
-    if not os.path.exists(model_path):
-        with st.spinner("Downloading Multimodal Model from Google Drive..."):
-            
-            url = f"https://drive.google.com/uc?id={MODEL_FILE_ID}"
-            
-            gdown.download(url, model_path, quiet=False)
-
-    model = tf.keras.models.load_model(model_path)
+    model = tf.keras.models.load_model(
+        model_path,
+        compile=False
+    )
 
     with open(tokenizer_path, "rb") as f:
         tokenizer = pickle.load(f)
